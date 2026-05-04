@@ -9,7 +9,7 @@ import cat.itacademy.s04.t02.n03.fruit_order_api.model.OrderItem;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderMapper {
+public final class OrderMapper {
 
     private OrderMapper() {
         throw new UnsupportedOperationException("Utility class");
@@ -26,6 +26,9 @@ public class OrderMapper {
     }
 
     public static OrderResponseDto toResponseDto(Order entity) {
+        if (entity == null) {
+            return null;
+        }
         return new OrderResponseDto(
                 entity.getId(),
                 entity.getClientName(),
