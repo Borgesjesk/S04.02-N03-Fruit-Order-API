@@ -7,6 +7,8 @@ import cat.itacademy.s04.t02.n03.fruit_order_api.mapper.OrderMapper;
 import cat.itacademy.s04.t02.n03.fruit_order_api.model.Order;
 import cat.itacademy.s04.t02.n03.fruit_order_api.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +17,15 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
+
+    private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
     private final OrderRepository orderRepository;
 
     @Override
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
         Order order = OrderMapper.toEntity(orderRequestDto);
         Order savedOrder = orderRepository.save(order);
+        log.info("Order created with id {}", savedOrder.getId());
         return OrderMapper.toResponseDto(savedOrder);
     }
 
@@ -45,7 +50,9 @@ public class OrderServiceImpl implements OrderService {
         }
         Order orderToUpdate = OrderMapper.toEntity(orderRequestDto);
         orderToUpdate.setId(id);
-        return OrderMapper.toResponseDto(orderRepository.save(orderToUpdate));
+        Order savedOrder = orderRepository.save(orderToUpdate);
+        log.info("Order updated with id {}", id);
+        return OrderMapper.toResponseDto(savedOrder);
     }
 
     @Override
@@ -54,5 +61,6 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderNotFoundException("Cannot delete. Order not found with id: %s".formatted(id));
         }
         orderRepository.deleteById(id);
+        log.info("Order deleted with id {}", id);
     }
 }
