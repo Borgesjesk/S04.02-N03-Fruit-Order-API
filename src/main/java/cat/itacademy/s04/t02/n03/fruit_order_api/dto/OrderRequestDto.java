@@ -26,5 +26,6 @@ public class OrderRequestDto {
     private LocalDate deliveryDate;
 
     @NotEmpty(message = "The order must contain at least one item")
-    private List<@Valid OrderItemDto> items;
+    @Valid
+    private List<OrderItemDto> items;
 }

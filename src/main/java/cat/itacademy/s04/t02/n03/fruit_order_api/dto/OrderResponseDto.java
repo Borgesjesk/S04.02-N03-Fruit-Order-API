@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderResponseDto {
 
-    private String orderId;
+    private String id;
     private String clientName;
     private LocalDate deliveryDate;
     private List<OrderItemDto> items;
-}
+    }
