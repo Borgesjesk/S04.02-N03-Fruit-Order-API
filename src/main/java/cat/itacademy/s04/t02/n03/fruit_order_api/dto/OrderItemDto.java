@@ -14,7 +14,7 @@ public class OrderItemDto {
     @NotBlank(message = "Fruit name cannot be empty")
     private String fruitName;
 
-    @NotNull(message = "Quantity is requited")
+    @NotNull(message = "Quantity is required")
     @Positive(message = "Quantity must be at least 1 kilo")
     private Integer quantityInKilos;
 }
