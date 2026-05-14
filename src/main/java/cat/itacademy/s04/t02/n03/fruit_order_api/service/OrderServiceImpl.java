@@ -40,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDto getOrderById(String id) {
         return orderRepository.findById(id)
                 .map(OrderMapper::toResponseDto)
-                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: %s".formatted(id)));
+                .orElseThrow(() ->
+                        new OrderNotFoundException("Order not found with id: %s".formatted(id)));
     }
 
     @Override

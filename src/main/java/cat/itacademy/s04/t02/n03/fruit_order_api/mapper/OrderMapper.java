@@ -41,7 +41,8 @@ public final class OrderMapper {
             return List.of();
         }
         return dtos.stream()
-                .map(dto -> new OrderItem(dto.getFruitName(), dto.getQuantityInKilos()))
+                .map(dto -> new OrderItem(dto.getFruitName(),
+                        dto.getQuantityInKilos()))
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +51,8 @@ public final class OrderMapper {
             return List.of();
         }
         return entities.stream()
-                .map(entity -> new OrderItemDto(entity.getFruitName(), entity.getQuantityInKilos()))
+                .map(entity -> new OrderItemDto(entity.getFruitName(),
+                        entity.getQuantityInKilos()))
                 .collect(Collectors.toList());
     }
 }

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FruitOrderApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FruitOrderApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FruitOrderApiApplication.class, args);
+    }
 
 }

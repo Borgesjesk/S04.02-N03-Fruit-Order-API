@@ -29,8 +29,10 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDto) {
-        log.info("POST /api/v1/orders - Creating new order for client: {}", orderRequestDto.getClientName());
+    public ResponseEntity<OrderResponseDto> createOrder(
+            @Valid @RequestBody OrderRequestDto orderRequestDto) {
+        log.info("POST /api/v1/orders - Creating new order for client: {}",
+                orderRequestDto.getClientName());
         OrderResponseDto response = orderService.createOrder(orderRequestDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -46,7 +48,8 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> updateOrder(@PathVariable String id, @Valid @RequestBody OrderRequestDto orderRequestDto) {
+    public ResponseEntity<OrderResponseDto> updateOrder(
+            @PathVariable String id, @Valid @RequestBody OrderRequestDto orderRequestDto) {
         log.info("PUT /api/v1/orders/{} -  Updating order", id);
         return ResponseEntity.ok(orderService.updateOrder(id, orderRequestDto));
     }
